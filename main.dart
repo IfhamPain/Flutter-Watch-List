@@ -25,43 +25,35 @@ class MyApp extends StatelessWidget {
 
 refreshSymbols () {
   symList = [
-    Symbols(symCode: "AAA", price: Random().nextInt(100)),
-    Symbols(symCode: "BBB", price: Random().nextInt(100)),
-    Symbols(symCode: "CCC", price: Random().nextInt(100)),
-    Symbols(symCode: "DDD", price: Random().nextInt(100)),
-    Symbols(symCode: "EEE", price: Random().nextInt(100)),
-    Symbols(symCode: "FFF", price: Random().nextInt(100)),
-    Symbols(symCode: "GGG", price: Random().nextInt(100)),
-    Symbols(symCode: "HHH", price: Random().nextInt(100)),
-    Symbols(symCode: "III", price: Random().nextInt(100)),
-    Symbols(symCode: "JJJ", price: Random().nextInt(100)),
+    Symbols(symCode: "AAA", price: Random().nextDouble() * (10.00 - 1.00 + 1.00) + 1.00),
+    Symbols(symCode: "AAA", price: Random().nextDouble() * (10.00 - 1.00 + 1.00) + 1.00),
+    Symbols(symCode: "AAA", price: Random().nextDouble() * (10.00 - 1.00 + 1.00) + 1.00),
+    Symbols(symCode: "AAA", price: Random().nextDouble() * (10.00 - 1.00 + 1.00) + 1.00),
+    Symbols(symCode: "AAA", price: Random().nextDouble() * (10.00 - 1.00 + 1.00) + 1.00),
+    Symbols(symCode: "AAA", price: Random().nextDouble() * (10.00 - 1.00 + 1.00) + 1.00),
+    Symbols(symCode: "AAA", price: Random().nextDouble() * (10.00 - 1.00 + 1.00) + 1.00),
+    Symbols(symCode: "AAA", price: Random().nextDouble() * (10.00 - 1.00 + 1.00) + 1.00),
+    Symbols(symCode: "AAA", price: Random().nextDouble() * (10.00 - 1.00 + 1.00) + 1.00),
+    Symbols(symCode: "AAA", price: Random().nextDouble() * (10.00 - 1.00 + 1.00) + 1.00),
   ];
 }
 
-int randomNumGenerator() {
-  int value = 0;
-  Timer.periodic(const Duration(milliseconds: 1000), (timer) {
-    value = Random().nextInt(100);
-  });
-  return value;
-}
-
 List<Symbols> symList = [
-  Symbols(symCode: "AAA", price: Random().nextInt(100)),
-  Symbols(symCode: "BBB", price: Random().nextInt(100)),
-  Symbols(symCode: "CCC", price: Random().nextInt(100)),
-  Symbols(symCode: "DDD", price: Random().nextInt(100)),
-  Symbols(symCode: "EEE", price: Random().nextInt(100)),
-  Symbols(symCode: "FFF", price: Random().nextInt(100)),
-  Symbols(symCode: "GGG", price: Random().nextInt(100)),
-  Symbols(symCode: "HHH", price: Random().nextInt(100)),
-  Symbols(symCode: "III", price: Random().nextInt(100)),
-  Symbols(symCode: "JJJ", price: Random().nextInt(100)),
+  Symbols(symCode: "AAA", price: Random().nextDouble() * (10.00 - 1.00 + 1.00) + 1.00),
+  Symbols(symCode: "AAA", price: Random().nextDouble() * (10.00 - 1.00 + 1.00) + 1.00),
+  Symbols(symCode: "AAA", price: Random().nextDouble() * (10.00 - 1.00 + 1.00) + 1.00),
+  Symbols(symCode: "AAA", price: Random().nextDouble() * (10.00 - 1.00 + 1.00) + 1.00),
+  Symbols(symCode: "AAA", price: Random().nextDouble() * (10.00 - 1.00 + 1.00) + 1.00),
+  Symbols(symCode: "AAA", price: Random().nextDouble() * (10.00 - 1.00 + 1.00) + 1.00),
+  Symbols(symCode: "AAA", price: Random().nextDouble() * (10.00 - 1.00 + 1.00) + 1.00),
+  Symbols(symCode: "AAA", price: Random().nextDouble() * (10.00 - 1.00 + 1.00) + 1.00),
+  Symbols(symCode: "AAA", price: Random().nextDouble() * (10.00 - 1.00 + 1.00) + 1.00),
+  Symbols(symCode: "AAA", price: Random().nextDouble() * (10.00 - 1.00 + 1.00) + 1.00),
 ];
 
 class Symbols {
   String symCode;
-  int price;
+  double price;
 
   Symbols({required this.symCode, required this.price});
 }
@@ -99,8 +91,11 @@ class _MyHomePageState extends State<MyHomePage>
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: Color(0xFF3F5AA6),
-            title: Text("UA MOB Flutter"),
+            backgroundColor: Color(0xFFFFFFFF),
+            title: Center(
+              child: Text("UA MOB Flutter", style: TextStyle(color: Colors.black),
+              ),
+            ),
           ),
           bottomNavigationBar: menu(),
           body: TabBarView(
@@ -116,14 +111,23 @@ class _MyHomePageState extends State<MyHomePage>
 
   Widget menu() {
     return Container(
-      color: Color(0xFF3F5AA6),
       child: const TabBar(
         tabs: [
           Tab(
-            text: "Watch 1",
+            child: Text(
+              'Watch 1',
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+            ),
           ),
           Tab(
-            text: "Watch 2",
+            child: Text(
+              'Watch 2',
+              style: TextStyle(
+                color: Colors.black,
+              ),
+            ),
           ),
         ],
       ),
@@ -131,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage>
   }
 
   Widget watchList() {
-    Timer.periodic(const Duration(milliseconds: 200), (timer) {
+    Timer.periodic(const Duration(milliseconds: 2000), (timer) {
       setState(() {
         refreshSymbols();
       });
@@ -140,23 +144,19 @@ class _MyHomePageState extends State<MyHomePage>
       itemCount: symList.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
+        childAspectRatio: 1.5
       ),
       itemBuilder: (BuildContext context, int index) {
         return GridView.count(
           crossAxisCount: 1,
+          childAspectRatio: 1.5,
           shrinkWrap: true,
           scrollDirection: Axis.vertical,
           physics: ScrollPhysics(),
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.all(40.0),
+              padding: const EdgeInsets.fromLTRB(0, 40, 0, 40),
               child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.black,
-                  ),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
                 child: Column(
                   children: [
                       Text(symList[index].symCode),
